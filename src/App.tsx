@@ -765,20 +765,12 @@ const BeforeAfter = () => (
 
 const COVERAGE_REGIONS = [
   {
-    region: 'Northern Ontario',
-    cities: ['Thunder Bay', 'Sudbury', 'Sault Ste. Marie', 'North Bay'],
-  },
-  {
-    region: 'Eastern Ontario',
-    cities: ['Ottawa', 'Kingston', 'Belleville', 'Peterborough'],
+    region: 'Southwestern Ontario',
+    cities: ['London', 'Windsor', 'Kitchener', 'Waterloo'],
   },
   {
     region: 'Greater Toronto Area',
-    cities: ['Toronto', 'Mississauga', 'Brampton', 'Markham', 'Vaughan', 'Oshawa', 'Oakville', 'Burlington'],
-  },
-  {
-    region: 'Western Ontario',
-    cities: ['Hamilton', 'Kitchener', 'London', 'Windsor', 'Barrie', 'Guelph'],
+    cities: ['Toronto', 'Mississauga', 'Brampton', 'Hamilton'],
   },
 ];
 
@@ -799,11 +791,11 @@ const OntarioCoverage = () => (
           Serving All of Ontario
         </h2>
         <p className="text-slate-600 dark:text-slate-400 text-lg max-w-xl mx-auto">
-          From Windsor to Ottawa, we move Ontarians home.
+          London, Brampton, Windsor, Hamilton, Kitchener, Waterloo, Mississauga &amp; Toronto.
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
         {COVERAGE_REGIONS.map(({ region, cities }, i) => (
           <motion.div
             key={i}
@@ -1184,7 +1176,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'What areas of Ontario do you serve?',
-    a: 'We serve the entire province — from Windsor to Ottawa, Toronto to Thunder Bay. See our full city list in the Coverage section above.',
+    a: 'We serve London, Brampton, Windsor, Hamilton, Kitchener, Waterloo, Mississauga, and Toronto. See our full coverage map above.',
   },
   {
     q: 'Is my move insured?',
@@ -1392,9 +1384,8 @@ const Footer = () => (
           <h4 className="font-bold text-white mb-4 text-sm">Ontario Cities</h4>
           <ul className="space-y-2.5 text-sm">
             {[
-              'Toronto', 'Ottawa', 'Mississauga', 'Brampton',
-              'Hamilton', 'London', 'Markham', 'Vaughan',
-              'Kitchener', 'Windsor',
+              'London', 'Brampton', 'Windsor', 'Hamilton',
+              'Kitchener', 'Waterloo', 'Mississauga', 'Toronto',
             ].map((city) => (
               <li key={city} className="flex items-center gap-1.5">
                 <span className="w-1 h-1 rounded-full bg-red-500 shrink-0" />
