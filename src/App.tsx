@@ -123,11 +123,11 @@ const Navbar: React.FC<NavbarProps> = ({ dark, toggleDark }) => {
 
             {/* Phone — desktop only */}
             <a
-              href="tel:+15196001234"
+              href="tel:+12269776703"
               className="hidden lg:flex items-center gap-1.5 text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 text-sm font-medium transition-colors"
             >
               <Phone className="w-4 h-4" />
-              (519) 600-1234
+              (226) 977-6703
             </a>
 
             {/* Dark mode toggle */}
@@ -189,11 +189,11 @@ const Navbar: React.FC<NavbarProps> = ({ dark, toggleDark }) => {
                 </a>
               ))}
               <a
-                href="tel:+15196001234"
+                href="tel:+12269776703"
                 className="flex items-center gap-2 px-4 py-3 text-slate-700 dark:text-slate-200 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-slate-800 rounded-xl font-medium transition-colors"
               >
                 <Phone className="w-4 h-4" />
-                (519) 600-1234
+                (226) 977-6703
               </a>
               <a
                 href="#estimate"
@@ -514,53 +514,38 @@ const Features = () => (
 
 // ── Price Calculator ──────────────────────────────────────────────────────────
 
-type HomeType = 'studio' | '1bed' | '2bed' | '3bed' | 'house';
-type DistanceType = 'local' | 'regional' | 'long';
-type AddonType = 'packing' | 'assembly' | 'storage';
+type PriceTier = 'standard' | 'premium';
+type BedSize = '1bed' | '2bed' | '3bed' | '4bed';
 
-const HOME_PRICES: Record<HomeType, [number, number]> = {
-  studio: [350, 500],
-  '1bed': [550, 750],
-  '2bed': [750, 1050],
-  '3bed': [1050, 1500],
-  house: [1500, 2500],
+const STANDARD_PRICES: Record<BedSize, number> = {
+  '1bed': 1800,
+  '2bed': 2400,
+  '3bed': 3400,
+  '4bed': 4800,
 };
 
-const DISTANCE_FACTORS: Record<DistanceType, number> = {
-  local: 1.0,
-  regional: 1.5,
-  long: 2.2,
+const PREMIUM_PRICES: Record<BedSize, number> = {
+  '1bed': 3000,
+  '2bed': 4500,
+  '3bed': 5500,
+  '4bed': 7000,
 };
 
-const ADDON_COSTS: Record<AddonType, number> = {
-  packing: 250,
-  assembly: 200,
-  storage: 250,
+const BED_LABELS: Record<BedSize, string> = {
+  '1bed': '1 Bedroom',
+  '2bed': '2 Bedrooms',
+  '3bed': '3 Bedrooms',
+  '4bed': '4 Bedrooms',
 };
 
 const PriceCalculator = () => {
-  const [homeType, setHomeType] = useState<HomeType | ''>('');
-  const [distance, setDistance] = useState<DistanceType | ''>('');
-  const [addons, setAddons] = useState<AddonType[]>([]);
+  const [tier, setTier] = useState<PriceTier>('standard');
+  const [bedSize, setBedSize] = useState<BedSize | ''>('');
 
-  const toggleAddon = (a: AddonType) => {
-    setAddons((prev) => prev.includes(a) ? prev.filter((x) => x !== a) : [...prev, a]);
-  };
+  const prices = tier === 'standard' ? STANDARD_PRICES : PREMIUM_PRICES;
+  const price = bedSize ? prices[bedSize] : null;
 
-  const estimate = (): [number, number] | null => {
-    if (!homeType || !distance) return null;
-    const [baseMin, baseMax] = HOME_PRICES[homeType];
-    const factor = DISTANCE_FACTORS[distance];
-    const addonTotal = addons.reduce((sum, a) => sum + ADDON_COSTS[a], 0);
-    return [
-      Math.round(baseMin * factor) + addonTotal,
-      Math.round(baseMax * factor) + addonTotal,
-    ];
-  };
-
-  const result = estimate();
-
-  const btnBase = 'px-4 py-2 rounded-xl text-sm font-semibold border-2 transition-all';
+  const btnBase = 'px-4 py-2.5 rounded-xl text-sm font-semibold border-2 transition-all';
   const btnActive = 'border-red-600 bg-red-600 text-white';
   const btnInactive = 'border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:border-red-300 dark:hover:border-red-800 bg-white dark:bg-slate-800';
 
@@ -575,10 +560,10 @@ const PriceCalculator = () => {
           className="text-center mb-10"
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-50 dark:bg-red-950/40 border border-red-100 dark:border-red-900/50 text-red-600 dark:text-red-400 font-medium text-sm mb-5">
-            <DollarSign className="w-3.5 h-3.5" /> Rough Estimate Calculator
+            <DollarSign className="w-3.5 h-3.5" /> Confidential Pricing
           </div>
           <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">How Much Will Your Move Cost?</h2>
-          <p className="text-slate-600 dark:text-slate-400 text-lg max-w-xl mx-auto">Get a rough idea before you talk to us. Takes 10 seconds.</p>
+          <p className="text-slate-600 dark:text-slate-400 text-lg max-w-xl mx-auto">Select your service and home size for a starting price.</p>
         </motion.div>
 
         <motion.div
@@ -588,66 +573,47 @@ const PriceCalculator = () => {
           transition={{ duration: 0.55, delay: 0.1 }}
           className="bg-white dark:bg-slate-800 rounded-3xl shadow-xl shadow-slate-200/60 dark:shadow-slate-900/40 border border-slate-100 dark:border-slate-700 p-8 md:p-10"
         >
-          {/* Home Type */}
+          {/* Tier selector */}
+          <div className="mb-8">
+            <p className="text-sm font-bold text-slate-700 dark:text-slate-200 mb-3">Service Package</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <button
+                onClick={() => setTier('standard')}
+                className={`flex flex-col gap-1 p-4 rounded-2xl border-2 text-left transition-all ${tier === 'standard' ? 'border-red-600 bg-red-50 dark:bg-red-950/20' : 'border-slate-200 dark:border-slate-600 hover:border-red-200 bg-white dark:bg-slate-800'}`}
+              >
+                <div className="flex items-center gap-2">
+                  <Truck className="w-4 h-4 text-red-600 shrink-0" />
+                  <span className="font-bold text-sm text-slate-900 dark:text-white">Standard Full Service</span>
+                  {tier === 'standard' && <CheckCircle2 className="w-4 h-4 text-red-600 ml-auto" />}
+                </div>
+                <p className="text-xs text-slate-500 dark:text-slate-400 pl-6">Packing, transport, unpacking, setup & bed assembly</p>
+              </button>
+
+              <button
+                onClick={() => setTier('premium')}
+                className={`flex flex-col gap-1 p-4 rounded-2xl border-2 text-left transition-all ${tier === 'premium' ? 'border-red-600 bg-red-50 dark:bg-red-950/20' : 'border-slate-200 dark:border-slate-600 hover:border-red-200 bg-white dark:bg-slate-800'}`}
+              >
+                <div className="flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-amber-500 shrink-0" />
+                  <span className="font-bold text-sm text-slate-900 dark:text-white">Premium White Glove</span>
+                  {tier === 'premium' && <CheckCircle2 className="w-4 h-4 text-red-600 ml-auto" />}
+                </div>
+                <p className="text-xs text-slate-500 dark:text-slate-400 pl-6">Everything in Standard + closet/kitchen org & box removal</p>
+              </button>
+            </div>
+          </div>
+
+          {/* Bed size */}
           <div className="mb-8">
             <p className="text-sm font-bold text-slate-700 dark:text-slate-200 mb-3">Home Size</p>
             <div className="flex flex-wrap gap-2">
-              {(['studio', '1bed', '2bed', '3bed', 'house'] as HomeType[]).map((h) => (
+              {(['1bed', '2bed', '3bed', '4bed'] as BedSize[]).map((b) => (
                 <button
-                  key={h}
-                  onClick={() => setHomeType(h)}
-                  className={`${btnBase} ${homeType === h ? btnActive : btnInactive}`}
+                  key={b}
+                  onClick={() => setBedSize(b)}
+                  className={`${btnBase} ${bedSize === b ? btnActive : btnInactive}`}
                 >
-                  {h === 'studio' && 'Studio'}
-                  {h === '1bed' && '1 Bedroom'}
-                  {h === '2bed' && '2 Bedroom'}
-                  {h === '3bed' && '3 Bedroom'}
-                  {h === 'house' && 'Full House'}
-                </button>
-              ))}
-            </div>
-            {homeType && (
-              <p className="text-xs text-slate-400 dark:text-slate-500 mt-2">
-                Base range: ${HOME_PRICES[homeType][0].toLocaleString()} – ${HOME_PRICES[homeType][1].toLocaleString()}
-              </p>
-            )}
-          </div>
-
-          {/* Distance */}
-          <div className="mb-8">
-            <p className="text-sm font-bold text-slate-700 dark:text-slate-200 mb-3">Move Distance</p>
-            <div className="flex flex-wrap gap-2">
-              {([
-                ['local', 'Local (under 30 km)'],
-                ['regional', 'Regional (30–150 km)'],
-                ['long', 'Long Distance (150 km+)'],
-              ] as [DistanceType, string][]).map(([key, label]) => (
-                <button
-                  key={key}
-                  onClick={() => setDistance(key)}
-                  className={`${btnBase} ${distance === key ? btnActive : btnInactive}`}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Add-ons */}
-          <div className="mb-8">
-            <p className="text-sm font-bold text-slate-700 dark:text-slate-200 mb-3">Add-ons (optional)</p>
-            <div className="flex flex-wrap gap-2">
-              {([
-                ['packing', 'Packing Service (+$250)'],
-                ['assembly', 'Furniture Assembly (+$200)'],
-                ['storage', 'Storage (+$250/mo)'],
-              ] as [AddonType, string][]).map(([key, label]) => (
-                <button
-                  key={key}
-                  onClick={() => toggleAddon(key)}
-                  className={`${btnBase} ${addons.includes(key) ? btnActive : btnInactive}`}
-                >
-                  {label}
+                  {BED_LABELS[b]}
                 </button>
               ))}
             </div>
@@ -655,26 +621,38 @@ const PriceCalculator = () => {
 
           {/* Result */}
           <div className="rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-700 p-6 text-center">
-            {result ? (
-              <motion.div
-                key={`${homeType}-${distance}-${addons.join(',')}`}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3 }}
-              >
-                <p className="text-sm text-slate-500 dark:text-slate-400 mb-2">Estimated cost</p>
-                <p className="text-4xl font-extrabold text-red-600 dark:text-red-400 mb-1">
-                  ${result[0].toLocaleString()} – ${result[1].toLocaleString()}
-                </p>
-                <p className="text-sm text-slate-400 dark:text-slate-500">CAD</p>
-              </motion.div>
-            ) : (
-              <p className="text-slate-400 dark:text-slate-500 text-sm">Select your home size and distance to see an estimate.</p>
-            )}
+            <AnimatePresence mode="wait">
+              {price ? (
+                <motion.div
+                  key={`${tier}-${bedSize}`}
+                  initial={{ opacity: 0, scale: 0.93 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.28 }}
+                >
+                  <p className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1">
+                    {tier === 'standard' ? 'Standard Full Service' : 'Premium White Glove'}
+                  </p>
+                  <p className="text-sm text-slate-500 dark:text-slate-400 mb-2">{BED_LABELS[bedSize as BedSize]}</p>
+                  <p className="text-5xl font-extrabold text-red-600 dark:text-red-400 mb-1">
+                    FROM ${price.toLocaleString()}
+                  </p>
+                  <p className="text-sm text-slate-400 dark:text-slate-500">CAD · Confidential pricing</p>
+                  {tier === 'standard' && (
+                    <p className="text-xs text-slate-400 mt-3">Includes packing, transport, unpacking, setup &amp; bed assembly.</p>
+                  )}
+                  {tier === 'premium' && (
+                    <p className="text-xs text-slate-400 mt-3">Includes everything in Standard + closet/kitchen org &amp; complete box removal.</p>
+                  )}
+                </motion.div>
+              ) : (
+                <p className="text-slate-400 dark:text-slate-500 text-sm">Select your service package and home size.</p>
+              )}
+            </AnimatePresence>
           </div>
 
           <p className="text-xs text-slate-400 dark:text-slate-500 mt-4 text-center leading-relaxed">
-            Estimates only — your actual quote may vary based on access, floor, date, and add-on services. Get a precise quote free.
+            Prices are subject to home size assessment. Final pricing confirmed after on-site or virtual consultation.
           </p>
 
           <a
@@ -1381,11 +1359,11 @@ const Footer = () => (
           </div>
           <p className="text-sm leading-relaxed mb-5">We move. We set up. You enjoy your new home. Ontario's premium moving & furniture assembly service.</p>
           <div className="flex flex-col gap-2 text-sm">
-            <a href="tel:+15196001234" className="hover:text-white transition-colors flex items-center gap-2">
-              <Phone className="w-4 h-4 text-red-500 shrink-0" /> (519) 600-1234
+            <a href="tel:+12269776703" className="hover:text-white transition-colors flex items-center gap-2">
+              <Phone className="w-4 h-4 text-red-500 shrink-0" /> (226) 977-6703
             </a>
-            <a href="mailto:hello@maplenest.ca" className="hover:text-white transition-colors flex items-center gap-2">
-              <Mail className="w-4 h-4 text-red-500 shrink-0" /> hello@maplenest.ca
+            <a href="mailto:maplenestmovingsetup@gmail.com" className="hover:text-white transition-colors flex items-center gap-2">
+              <Mail className="w-4 h-4 text-red-500 shrink-0" /> maplenestmovingsetup@gmail.com
             </a>
           </div>
         </div>
