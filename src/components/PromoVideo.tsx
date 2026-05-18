@@ -7,7 +7,6 @@ import {
   ChevronRight,
   Clock,
   Coffee,
-  Download,
   Heart,
   Home,
   MapPin,
@@ -293,11 +292,7 @@ const scenes: Scene[] = [
           transition={{ duration: 0.5 }}
           className="flex flex-col items-center gap-4"
         >
-          <div className="relative flex items-center justify-center w-24 h-24 bg-white rounded-full shadow-xl">
-            <Home className="w-12 h-12 text-[#1A243D] absolute" />
-            <div className="text-[#C8102E] absolute -top-2 text-4xl opacity-50">🍁</div>
-          </div>
-          <h2 className="text-2xl font-bold text-white tracking-widest uppercase">MapleNest</h2>
+          <img src="/logo/Logo-Moving.jpg" alt="MapleNest Moving & Setup" className="h-28 w-auto drop-shadow-2xl" />
         </motion.div>
         <motion.div
           initial={{ y: 20, opacity: 0 }}
@@ -333,7 +328,6 @@ export default function PromoVideo() {
   const [currentScene, setCurrentScene] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [progress, setProgress] = useState(0);
-  const [isRecording, setIsRecording] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const audioRef = useRef<HTMLAudioElement>(null);
 
@@ -391,53 +385,13 @@ export default function PromoVideo() {
     }
   };
 
-  const startRecord = async () => {
-    try {
-      const stream = await navigator.mediaDevices.getDisplayMedia({
-        video: { displaySurface: 'browser' },
-        audio: true,
-        preferCurrentTab: true,
-      } as MediaStreamConstraints);
-
-      const recorder = new MediaRecorder(stream, { mimeType: 'video/webm' });
-      const chunks: BlobPart[] = [];
-
-      recorder.ondataavailable = (e) => { if (e.data.size > 0) chunks.push(e.data); };
-      recorder.onstop = () => {
-        const blob = new Blob(chunks, { type: 'video/webm' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'MapleNest-Promo.webm';
-        a.click();
-        URL.revokeObjectURL(url);
-        setIsRecording(false);
-      };
-
-      setIsRecording(true);
-      setCurrentScene(0);
-      setProgress(0);
-      setIsPlaying(true);
-      recorder.start();
-
-      setTimeout(() => {
-        if (recorder.state !== 'inactive') {
-          recorder.stop();
-          stream.getTracks().forEach((t) => t.stop());
-        }
-      }, scenes.length * SCENE_DURATION + 500);
-    } catch {
-      setIsRecording(false);
-    }
-  };
-
   const isEnded = currentScene === scenes.length - 1 && !isPlaying;
 
   return (
     <div className="relative w-full overflow-hidden bg-white rounded-2xl shadow-2xl aspect-video select-none group">
       <audio
         ref={audioRef}
-        src="https://cdn.pixabay.com/audio/2022/10/25/audio_27ef1a2575.mp3"
+        src="/audio/promo-music.mp3"
         loop
         preload="auto"
       />
@@ -484,19 +438,6 @@ export default function PromoVideo() {
           {/* Play / Pause / Restart */}
           <button onClick={handlePlayPause} className="p-2 rounded-full hover:bg-white/20 transition-colors" aria-label="Play / Pause">
             {isEnded ? <RotateCcw className="w-5 h-5" /> : isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
-          </button>
-
-          {/* Record & download */}
-          <button
-            onClick={startRecord}
-            disabled={isRecording}
-            className={`p-2 rounded-full transition-colors flex items-center gap-2 ${isRecording ? 'text-red-400 bg-red-400/20 cursor-not-allowed' : 'hover:bg-white/20'}`}
-            aria-label="Record video"
-            title="Record & Download as .webm"
-          >
-            {isRecording
-              ? <div className="w-3 h-3 rounded-full bg-red-500 animate-pulse" />
-              : <Download className="w-5 h-5" />}
           </button>
 
           {/* Scene progress track */}

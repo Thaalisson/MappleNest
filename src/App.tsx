@@ -105,17 +105,8 @@ const Navbar: React.FC<NavbarProps> = ({ dark, toggleDark }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2 shrink-0">
-            <motion.div
-              animate={{ rotate: [0, 15, -8, 0] }}
-              transition={{ duration: 2, repeat: Infinity, repeatDelay: 5, ease: 'easeInOut' }}
-            >
-              <Leaf className="h-7 w-7 text-red-600" fill="currentColor" />
-            </motion.div>
-            <span className="font-extrabold text-2xl tracking-tight">
-              <span className="text-red-600">Maple</span>
-              <span className="text-slate-900 dark:text-white">Nest</span>
-            </span>
+          <a href="#" className="flex items-center shrink-0">
+            <img src="/logo/Logo-Moving.jpg" alt="MapleNest Moving & Setup" className="h-12 w-auto" />
           </a>
 
           {/* Desktop nav */}
@@ -1385,11 +1376,8 @@ const Footer = () => (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
         <div>
-          <div className="flex items-center gap-2 mb-4">
-            <Leaf className="h-6 w-6 text-red-500" fill="currentColor" />
-            <span className="font-extrabold text-xl tracking-tight">
-              <span className="text-red-500">Maple</span><span className="text-white">Nest</span>
-            </span>
+          <div className="mb-4">
+            <img src="/logo/LogoImage.png" alt="MapleNest" className="h-12 w-auto" />
           </div>
           <p className="text-sm leading-relaxed mb-5">We move. We set up. You enjoy your new home. Ontario's premium moving & furniture assembly service.</p>
           <div className="flex flex-col gap-2 text-sm">
