@@ -391,7 +391,7 @@ export default function PromoVideo() {
     <div className="relative w-full overflow-hidden bg-white rounded-2xl shadow-2xl aspect-video select-none group">
       <audio
         ref={audioRef}
-        src="/audio/promo-music.mp3"
+        src="/songs/the_mountain-instrumental-uplifting-522470.mp3"
         loop
         preload="auto"
       />
