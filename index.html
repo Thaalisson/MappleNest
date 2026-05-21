@@ -3,38 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MapleNest Moving &amp; Setup | Ontario's Premier Moving Service</title>
-    <meta name="description" content="MapleNest Moving &amp; Setup — Ontario's trusted movers. We move, assemble IKEA furniture, and set up your home so you can enjoy it from day one. Serving all of Ontario." />
-    <meta property="og:title" content="MapleNest Moving &amp; Setup | Ontario's Premier Moving Service" />
-    <meta property="og:description" content="Ontario's trusted full-service movers. We move, assemble IKEA furniture, pack, and set up your home from day one. Free estimates." />
+    <title>MapleNest Moving &amp; Setup | London, ON &amp; Surrounding Area</title>
+    <meta name="description" content="MapleNest Moving &amp; Setup — full-service movers in London, Brampton, Windsor, Hamilton, Kitchener, Waterloo, Mississauga and Toronto. We move, pack, unpack, assemble furniture and set up your home." />
+    <meta property="og:title" content="MapleNest Moving &amp; Setup | London, ON &amp; Surrounding Area" />
+    <meta property="og:description" content="We don't just move you. We set up your home. Packing, moving, unpacking, furniture assembly and home organization in one seamless experience." />
     <meta property="og:type" content="website" />
-    <link rel="canonical" href="https://maplenest.ca" />
-
-    <!-- Add GA tag here -->
 
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "MapleNest Moving & Setup",
-      "url": "https://maplenest.ca",
-      "telephone": "+15196001234",
-      "email": "hello@maplenest.ca",
-      "description": "Full-service moving, furniture assembly, packing, and home setup across all of Ontario, Canada.",
-      "areaServed": {
-        "@type": "AdministrativeArea",
-        "name": "Ontario",
-        "containedInPlace": {
-          "@type": "Country",
-          "name": "Canada"
-        }
-      },
-      "serviceArea": [
-        "Toronto", "Ottawa", "Mississauga", "Brampton", "Hamilton",
-        "London", "Markham", "Vaughan", "Kitchener", "Windsor",
-        "Thunder Bay", "Sudbury", "Sault Ste. Marie", "North Bay",
-        "Kingston", "Belleville", "Peterborough", "Oshawa",
-        "Oakville", "Burlington", "Barrie", "Guelph"
+      "telephone": "+12269776703",
+      "email": "maplenestmovingsetup@gmail.com",
+      "description": "Full-service moving, furniture assembly, packing, unpacking and home setup. Serving London, Brampton, Windsor, Hamilton, Kitchener, Waterloo, Mississauga, Toronto, Cambridge, Woodstock and St. Thomas.",
+      "areaServed": [
+        "London", "Brampton", "Windsor", "Hamilton",
+        "Kitchener", "Waterloo", "Mississauga", "Toronto",
+        "Cambridge", "Woodstock", "St. Thomas"
       ],
       "priceRange": "$$",
       "openingHours": "Mo-Su 07:00-20:00"
@@ -42,6 +28,19 @@
     </script>
   </head>
   <body>
+    <!-- Netlify Forms: hidden form so Netlify detects all fields at build time -->
+    <form name="estimate" data-netlify="true" hidden>
+      <input type="hidden" name="form-name" value="estimate" />
+      <input name="from" />
+      <input name="to" />
+      <input name="date" />
+      <input name="homeType" />
+      <input name="services" />
+      <input name="name" />
+      <input name="email" />
+      <input name="phone" />
+    </form>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
