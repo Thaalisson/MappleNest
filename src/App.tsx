@@ -226,15 +226,15 @@ const Hero = () => (
     </div>
 
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      {/* Centered headline block */}
       <div className="text-center mb-10">
+        {/* Logo centralizada */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: -16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-50 dark:bg-red-950/40 border border-red-100 dark:border-red-900/50 text-red-600 dark:text-red-400 font-medium text-sm mb-6"
+          className="flex justify-center mb-8"
         >
-          <Leaf className="w-3.5 h-3.5" /> Ontario's Most Trusted Moving Service
+          <img src="/logo/Logo-Moving.jpg" alt="MapleNest Moving & Setup" className="h-20 w-auto" />
         </motion.div>
 
         <motion.h1
@@ -243,9 +243,9 @@ const Hero = () => (
           transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           className="text-5xl lg:text-6xl xl:text-7xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.08] mb-6"
         >
-          Move into your new home{' '}
+          We Don't Just Move You.{' '}
           <span className="text-red-600 relative inline-block">
-            stress-free.
+            We Set Up Your Home.
             <svg className="absolute -bottom-1 left-0 w-full" viewBox="0 0 100 8" preserveAspectRatio="none" height="8">
               <path d="M0 5 Q50 0 100 5" stroke="#fca5a5" strokeWidth="3" fill="none" strokeLinecap="round" />
             </svg>
@@ -258,7 +258,7 @@ const Hero = () => (
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-xl text-slate-600 dark:text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed"
         >
-          MapleNest moves you in, assembles your IKEA furniture, and organizes your home — so you can enjoy your new place from day one. Serving all of Ontario.
+          Packing, moving, unpacking, furniture assembly and home organization, all in one seamless experience.
         </motion.p>
 
         <motion.div
@@ -309,7 +309,7 @@ const Hero = () => (
           <div className="flex gap-0.5 text-amber-400 mb-0.5">
             {[...Array(5)].map((_, i) => <Star key={i} fill="currentColor" size={13} />)}
           </div>
-          <span>4.9 stars · 12,000+ happy moves across Ontario</span>
+          <span>4.9 stars · 320+ successful moves across Ontario</span>
         </div>
       </motion.div>
     </div>
@@ -319,10 +319,10 @@ const Hero = () => (
 // ── Stats bar ─────────────────────────────────────────────────────────────────
 
 const STATS = [
-  { to: 12000, suffix: '+', label: 'Happy Moves' },
+  { to: 320, suffix: '+', label: 'Successful Moves' },
   { to: 49, display: (v: number) => `${(v / 10).toFixed(1)} ★`, label: 'Avg Rating' },
-  { to: 50, suffix: '+', label: 'Trained Movers' },
-  { to: 10, suffix: '', label: 'Ontario Cities' },
+  { to: 5, suffix: '+', label: 'Years Experience' },
+  { to: 8, suffix: '', label: 'Cities Served' },
 ];
 
 const StatsBar = () => (
@@ -352,8 +352,8 @@ const StatsBar = () => (
 
 const SERVICES = [
   { Icon: Truck, title: 'Residential Moving', desc: 'Safe, efficient moving for homes of all sizes across Ontario.' },
-  { Icon: Wrench, title: 'Furniture Assembly', desc: 'Expert disassembly and assembly of all your furniture — IKEA included.' },
-  { Icon: Settings, title: 'Home Setup', desc: "We arrange furniture and connect appliances so you're ready to live." },
+  { Icon: Wrench, title: 'Furniture Assembly', desc: 'Expert disassembly and reassembly of all your furniture, handled with care.' },
+  { Icon: Settings, title: 'Home Setup', desc: "We arrange furniture and connect appliances so you are ready to live from day one." },
   { Icon: Package, title: 'Packing & Unpacking', desc: 'Careful packing of your belongings with premium materials.' },
   { Icon: Building2, title: 'Condo Moving', desc: 'Specialized service for elevators, tight spaces, and building rules.' },
   { Icon: Car, title: 'Small Moves', desc: 'Cost-effective solutions for studios or a handful of items.' },
@@ -371,7 +371,7 @@ const Services = () => (
         transition={{ duration: 0.5 }}
         className="text-center mb-16"
       >
-        <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">Complete Moving Solutions</h2>
+        <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">One company. Everything handled.</h2>
         <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
           From packing the first box to assembling your bed in the new place, we handle every detail.
         </p>
@@ -404,7 +404,7 @@ const Services = () => (
 const STEPS = [
   { num: '01', title: 'Tell us about your move', desc: 'Share your origin, destination, home type, and preferred date.' },
   { num: '02', title: 'Get a clear estimate', desc: 'Receive a transparent, upfront quote with no hidden fees.' },
-  { num: '03', title: 'Book verified movers', desc: 'Lock in your date. Our trained team will arrive on time.' },
+  { num: '03', title: 'Book Your Hassle-Free Move', desc: 'Lock in your date. Our trained team will arrive on time.' },
   { num: '04', title: 'We move and set up', desc: 'We handle transport, unboxing, and furniture assembly.' },
   { num: '05', title: 'Enjoy your new place', desc: 'Relax in your fully set-up home. Welcome home.' },
 ];
@@ -453,7 +453,7 @@ const HowItWorks = () => (
 // ── Features / Why Us ─────────────────────────────────────────────────────────
 
 const FEATURES = [
-  { Icon: ShieldCheck, title: 'Verified Movers', desc: 'Background-checked, trained, and professional staff on every job.' },
+  { Icon: Home, title: 'Full Home Setup', desc: 'More than moving, we help make your home fully ready from day one.' },
   { Icon: DollarSign, title: 'Upfront Pricing', desc: 'Clear rates before we start. No hidden fees, ever.' },
   { Icon: MapPin, title: 'Real-Time Tracking', desc: 'Know exactly where your belongings are during transit.' },
   { Icon: Camera, title: 'Photo Inventory', desc: 'Digital record of all your items for complete peace of mind.' },
@@ -620,47 +620,38 @@ const PriceCalculator = () => {
           </div>
 
           {/* Result */}
-          <div className="rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-700 p-6 text-center">
-            <AnimatePresence mode="wait">
-              {price ? (
-                <motion.div
-                  key={`${tier}-${bedSize}`}
-                  initial={{ opacity: 0, scale: 0.93 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.28 }}
+          <AnimatePresence mode="wait">
+            {bedSize ? (
+              <motion.div
+                key={`${tier}-${bedSize}`}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.28 }}
+                className="rounded-2xl bg-red-50 dark:bg-red-950/20 border border-red-100 dark:border-red-900/40 p-6 text-center"
+              >
+                <p className="text-sm font-semibold text-slate-600 dark:text-slate-300 mb-1">
+                  {tier === 'standard' ? 'Standard Full Service' : 'Premium White Glove'} · {BED_LABELS[bedSize]}
+                </p>
+                <p className="text-lg font-bold text-slate-900 dark:text-white mb-4">
+                  Let's get you a quote for this move.
+                </p>
+                <a
+                  href="#estimate"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 bg-red-600 hover:bg-red-700 text-white rounded-xl font-bold text-sm transition-all shadow-md shadow-red-500/20"
                 >
-                  <p className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1">
-                    {tier === 'standard' ? 'Standard Full Service' : 'Premium White Glove'}
-                  </p>
-                  <p className="text-sm text-slate-500 dark:text-slate-400 mb-2">{BED_LABELS[bedSize as BedSize]}</p>
-                  <p className="text-5xl font-extrabold text-red-600 dark:text-red-400 mb-1">
-                    FROM ${price.toLocaleString()}
-                  </p>
-                  <p className="text-sm text-slate-400 dark:text-slate-500">CAD · Confidential pricing</p>
-                  {tier === 'standard' && (
-                    <p className="text-xs text-slate-400 mt-3">Includes packing, transport, unpacking, setup &amp; bed assembly.</p>
-                  )}
-                  {tier === 'premium' && (
-                    <p className="text-xs text-slate-400 mt-3">Includes everything in Standard + closet/kitchen org &amp; complete box removal.</p>
-                  )}
-                </motion.div>
-              ) : (
+                  Get My Free Quote <ArrowRight className="w-4 h-4" />
+                </a>
+                <p className="text-xs text-slate-400 dark:text-slate-500 mt-4">
+                  Pricing confirmed after on-site or virtual consultation.
+                </p>
+              </motion.div>
+            ) : (
+              <div className="rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-700 p-6 text-center">
                 <p className="text-slate-400 dark:text-slate-500 text-sm">Select your service package and home size.</p>
-              )}
-            </AnimatePresence>
-          </div>
-
-          <p className="text-xs text-slate-400 dark:text-slate-500 mt-4 text-center leading-relaxed">
-            Prices are subject to home size assessment. Final pricing confirmed after on-site or virtual consultation.
-          </p>
-
-          <a
-            href="#estimate"
-            className="mt-6 flex items-center justify-center gap-2 w-full py-3.5 bg-red-600 hover:bg-red-700 text-white rounded-xl font-bold text-sm transition-all shadow-md shadow-red-500/20"
-          >
-            Get My Exact Free Quote <ArrowRight className="w-4 h-4" />
-          </a>
+              </div>
+            )}
+          </AnimatePresence>
         </motion.div>
       </div>
     </section>
@@ -766,7 +757,7 @@ const BeforeAfter = () => (
 const COVERAGE_REGIONS = [
   {
     region: 'Southwestern Ontario',
-    cities: ['London', 'Windsor', 'Kitchener', 'Waterloo'],
+    cities: ['London', 'Windsor', 'Kitchener', 'Waterloo', 'Cambridge', 'Woodstock', 'St. Thomas'],
   },
   {
     region: 'Greater Toronto Area',
@@ -785,13 +776,13 @@ const OntarioCoverage = () => (
         className="text-center mb-14"
       >
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-50 dark:bg-red-950/40 border border-red-100 dark:border-red-900/50 text-red-600 dark:text-red-400 font-medium text-sm mb-5">
-          <MapPin className="w-3.5 h-3.5" /> Ontario-Wide Service
+          <MapPin className="w-3.5 h-3.5" /> Where We Operate
         </div>
         <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">
-          Serving All of Ontario
+          Cities We Serve
         </h2>
         <p className="text-slate-600 dark:text-slate-400 text-lg max-w-xl mx-auto">
-          London, Brampton, Windsor, Hamilton, Kitchener, Waterloo, Mississauga &amp; Toronto.
+          London, Brampton, Windsor, Hamilton, Kitchener, Waterloo, Mississauga, Toronto, Cambridge, Woodstock and St. Thomas.
         </p>
       </motion.div>
 
@@ -1114,8 +1105,8 @@ const EstimateWizard = () => {
 
 const REVIEWS = [
   { name: 'Sarah L.', loc: 'Toronto, ON', text: 'Moving is usually a nightmare, but MapleNest made it a breeze. They not only moved my stuff safely but set up my entire living room. Incredible service!' },
-  { name: 'David M.', loc: 'Ottawa, ON', text: 'The upfront pricing was exactly what I paid. No surprises. The photo inventory gave me so much peace of mind for my cross-city move.' },
-  { name: 'Elena K.', loc: 'Mississauga, ON', text: 'As a newcomer to Ontario, finding a reliable moving company was stressful. MapleNest assembled all my IKEA furniture and handled every condo rule perfectly.' },
+  { name: 'David M.', loc: 'London, ON', text: 'The upfront pricing was exactly what I paid. No surprises. The photo inventory gave me so much peace of mind for my cross-city move.' },
+  { name: 'Elena K.', loc: 'Mississauga, ON', text: 'As a newcomer to Ontario, finding a reliable moving company was stressful. MapleNest assembled all my furniture and handled every condo rule perfectly.' },
 ];
 
 const Testimonials = () => (
@@ -1176,7 +1167,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'What areas of Ontario do you serve?',
-    a: 'We serve London, Brampton, Windsor, Hamilton, Kitchener, Waterloo, Mississauga, and Toronto. See our full coverage map above.',
+    a: 'We serve London, Brampton, Windsor, Hamilton, Kitchener, Waterloo, Mississauga, Toronto, Cambridge, Woodstock and St. Thomas. See our coverage map above.',
   },
   {
     q: 'Is my move insured?',
@@ -1192,7 +1183,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "What items can't you move?",
-    a: 'Hazardous materials (propane, paint, chemicals), live plants, and perishable food. For specialty items like pianos, pool tables, or large safes, ask us and we\'ll find a solution.',
+    a: 'Hazardous materials (propane, paint, chemicals) and live plants. For specialty items like pianos, pool tables, or large safes, ask us and we\'ll find a solution.',
   },
   {
     q: 'How long does a typical move take?',
@@ -1386,6 +1377,7 @@ const Footer = () => (
             {[
               'London', 'Brampton', 'Windsor', 'Hamilton',
               'Kitchener', 'Waterloo', 'Mississauga', 'Toronto',
+              'Cambridge', 'Woodstock', 'St. Thomas',
             ].map((city) => (
               <li key={city} className="flex items-center gap-1.5">
                 <span className="w-1 h-1 rounded-full bg-red-500 shrink-0" />
@@ -1510,14 +1502,12 @@ const GALLERY_ITEMS = [
   { src: '/images/gallery/slide-05-clutter-free.jpg',    title: 'The Complete Moving Experience. Door to Door.', tag: 'Moving'      },
   { src: '/images/gallery/slide-07-home-organizing.jpg', title: 'Moving Next Week? Here Is Your Checklist.',     tag: 'Tips'        },
   { src: '/images/gallery/slide-09-finishing-touch.jpg', title: 'Their Space, Ready First.',                     tag: 'Family'      },
-  { src: '/images/gallery/slide-11-walk-in.jpg',         title: 'The Clutter-Free Finish. Set Up.',              tag: 'Setup'       },
-  { src: '/images/gallery/slide-12-door-to-door.jpg',    title: 'Your Kitchen — Move-In Ready.',                 tag: 'Kitchen'     },
+  { src: '/images/gallery/slide-12-door-to-door.jpg',    title: 'Your Kitchen, Move-In Ready.',                  tag: 'Kitchen'     },
   { src: '/images/gallery/slide-01-first-night.jpg',     title: 'Do More Than Move. Set Up.',                    tag: 'Organising'  },
   { src: '/images/gallery/slide-04-family-move.jpg',     title: 'Your New Chapter Begins With Ease.',            tag: 'Moving'      },
   { src: '/images/gallery/slide-06-kitchen.jpg',         title: 'The Finishing Touch. A Stress-Free Welcome.',   tag: 'Setup'       },
   { src: '/images/gallery/slide-08-new-chapter.jpg',     title: 'White Glove. A Setup, Not Just a Move.',        tag: 'White Glove' },
   { src: '/images/gallery/slide-10-white-glove.jpg',     title: "Walk In. Sit Down. You're Home.",               tag: 'Moving'      },
-  { src: '/images/gallery/slide-02-complete-moving.jpg', title: 'Door to Door. Confidential Consult.',           tag: 'Moving'      },
 ];
 
 const TAG_COLORS: Record<string, string> = {
@@ -1562,7 +1552,7 @@ const Gallery = () => {
             See What MapleNest Delivers
           </h2>
           <p className="text-slate-600 dark:text-slate-400 text-lg max-w-xl mx-auto">
-            From first-night setups to white glove organization — real results from real Ontario moves.
+            From first-night setups to white glove organization. Real results from real Ontario moves.
           </p>
         </motion.div>
 
@@ -1707,13 +1697,11 @@ export default function App() {
         <HowItWorks />
         <Features />
         <PriceCalculator />
-        <BeforeAfter />
         <OntarioCoverage />
         <EstimateWizard />
         <Testimonials />
         <Gallery />
         <FAQ />
-        <BlogTips />
       </main>
       <Footer />
       <WhatsAppButton />
