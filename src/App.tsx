@@ -8,6 +8,7 @@ import {
   Sparkles, CheckCircle, XCircle, ChevronDown, ChevronUp,
 } from 'lucide-react';
 import PromoVideo from './components/PromoVideo';
+import emailjs from '@emailjs/browser';
 
 // ── useDarkMode ───────────────────────────────────────────────────────────────
 
@@ -1051,26 +1052,24 @@ const EstimateWizard = () => {
                 >
                   <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-6">Step 3 of 3 — Contact Info</h3>
                   <form
-                    name="estimate"
-                    data-netlify="true"
                     onSubmit={async (e) => {
                       e.preventDefault();
                       try {
-                        await fetch('/', {
-                          method: 'POST',
-                          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                          body: new URLSearchParams({
-                            'form-name': 'estimate',
-                            from: form.from,
-                            to: form.to,
-                            date: form.date,
-                            homeType: form.homeType,
+                        await emailjs.send(
+                          'service_fvathhx',
+                          'template_y6smoww',
+                          {
+                            from_city: form.from,
+                            to_city: form.to,
+                            move_date: form.date,
+                            home_type: form.homeType,
                             services: form.services.join(', '),
-                            name: form.name,
-                            email: form.email,
-                            phone: form.phone,
-                          }).toString(),
-                        });
+                            client_name: form.name,
+                            client_email: form.email,
+                            client_phone: form.phone,
+                          },
+                          'YhsGCRCbDh6xdny3I'
+                        );
                       } finally {
                         setSubmitted(true);
                       }
