@@ -758,12 +758,20 @@ const BeforeAfter = () => (
 
 const COVERAGE_REGIONS = [
   {
-    region: 'Southwestern Ontario',
-    cities: ['London', 'Windsor', 'Kitchener', 'Waterloo', 'Cambridge', 'Woodstock', 'St. Thomas'],
+    region: 'West of London',
+    cities: ['Sarnia', 'Chatham'],
   },
   {
-    region: 'Greater Toronto Area',
-    cities: ['Toronto', 'Mississauga', 'Brampton', 'Hamilton'],
+    region: 'North of London',
+    cities: ['Stratford', 'Goderich'],
+  },
+  {
+    region: 'East & Northeast',
+    cities: ['Woodstock', 'Brantford', 'Kitchener', 'Waterloo', 'Cambridge', 'Guelph', 'Hamilton', 'Burlington', 'Oakville', 'Milton', 'Mississauga', 'Toronto'],
+  },
+  {
+    region: 'South',
+    cities: ['St. Thomas', 'Port Stanley'],
   },
 ];
 
@@ -784,7 +792,7 @@ const OntarioCoverage = () => (
           Cities We Serve
         </h2>
         <p className="text-slate-600 dark:text-slate-400 text-lg max-w-xl mx-auto">
-          London, Brampton, Windsor, Hamilton, Kitchener, Waterloo, Mississauga, Toronto, Cambridge, Woodstock and St. Thomas.
+          London and surrounding area: Sarnia, Chatham, Stratford, Goderich, Woodstock, Brantford, Kitchener, Waterloo, Cambridge, Guelph, Hamilton, Burlington, Oakville, Milton, Mississauga, Toronto, St. Thomas and Port Stanley.
         </p>
       </motion.div>
 
@@ -962,7 +970,7 @@ const EstimateWizard = () => {
                     </div>
                     <div>
                       <label className={labelCls}>Moving To</label>
-                      <input type="text" placeholder="Ottawa, ON" value={form.to} onChange={(e) => setField('to', e.target.value)} className={inputCls} />
+                      <input type="text" placeholder="Kitchener, ON" value={form.to} onChange={(e) => setField('to', e.target.value)} className={inputCls} />
                     </div>
                     <div>
                       <label className={labelCls}>Move Date</label>
@@ -1410,9 +1418,11 @@ const Footer = () => (
           <h4 className="font-bold text-white mb-4 text-sm">Ontario Cities</h4>
           <ul className="space-y-2.5 text-sm">
             {[
-              'London', 'Brampton', 'Windsor', 'Hamilton',
-              'Kitchener', 'Waterloo', 'Mississauga', 'Toronto',
-              'Cambridge', 'Woodstock', 'St. Thomas',
+              'London', 'Sarnia', 'Chatham', 'Stratford',
+              'Goderich', 'Woodstock', 'Brantford', 'Kitchener',
+              'Waterloo', 'Cambridge', 'Guelph', 'Hamilton',
+              'Burlington', 'Oakville', 'Milton', 'Mississauga',
+              'Toronto', 'St. Thomas', 'Port Stanley',
             ].map((city) => (
               <li key={city} className="flex items-center gap-1.5">
                 <span className="w-1 h-1 rounded-full bg-red-500 shrink-0" />
