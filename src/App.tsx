@@ -1208,11 +1208,7 @@ const FAQ_ITEMS = [
     q: 'What areas of Ontario do you serve?',
     a: 'We serve London, Brampton, Windsor, Hamilton, Kitchener, Waterloo, Mississauga, Toronto, Cambridge, Woodstock and St. Thomas. See our coverage map above.',
   },
-  {
-    q: 'Is my move insured?',
-    a: 'Yes. All moves include standard protection. For high-value or fragile items, we work with your insurance provider. Ask us about full-value protection when you book.',
-  },
-  {
+{
     q: 'How far in advance should I book?',
     a: 'We recommend 2–4 weeks for weekend moves. Weekday availability is often better. We also offer last-minute bookings with 24–48 hours notice — just call us.',
   },
