@@ -841,6 +841,8 @@ const EstimateWizard = () => {
   const [step, setStep] = useState(0);
   const [direction, setDirection] = useState(1);
   const [submitted, setSubmitted] = useState(false);
+  const [sendError, setSendError] = useState(false);
+  const [sending, setSending] = useState(false);
   const [form, setForm] = useState<WizardForm>({
     from: '', to: '', date: '', homeType: '', services: [],
     name: '', email: '', phone: '',
@@ -1055,6 +1057,8 @@ const EstimateWizard = () => {
                   <form
                     onSubmit={async (e) => {
                       e.preventDefault();
+                      setSending(true);
+                      setSendError(false);
                       try {
                         await emailjs.send(
                           'service_fvathhx',
@@ -1071,8 +1075,12 @@ const EstimateWizard = () => {
                           },
                           'YhsGCRCbDh6xdny3I'
                         );
-                      } finally {
                         setSubmitted(true);
+                      } catch (err) {
+                        console.error('EmailJS error:', err);
+                        setSendError(true);
+                      } finally {
+                        setSending(false);
                       }
                     }}
                     className="space-y-5"
@@ -1108,11 +1116,17 @@ const EstimateWizard = () => {
                       </button>
                       <button
                         type="submit"
-                        className="flex-1 flex items-center justify-center gap-2 py-3.5 bg-red-600 hover:bg-red-700 text-white rounded-xl font-bold text-sm transition-all shadow-lg shadow-red-500/25"
+                        disabled={sending}
+                        className="flex-1 flex items-center justify-center gap-2 py-3.5 bg-red-600 hover:bg-red-700 disabled:opacity-60 text-white rounded-xl font-bold text-sm transition-all shadow-lg shadow-red-500/25"
                       >
-                        Get My Free Estimate <ArrowRight className="w-4 h-4" />
+                        {sending ? 'Sending…' : <> Get My Free Estimate <ArrowRight className="w-4 h-4" /> </>}
                       </button>
                     </div>
+                    {sendError && (
+                      <p className="text-red-600 dark:text-red-400 text-sm text-center pt-2">
+                        Something went wrong. Please try again or contact us directly.
+                      </p>
+                    )}
                   </form>
                 </motion.div>
               )}
