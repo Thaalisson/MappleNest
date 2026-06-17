@@ -635,7 +635,7 @@ export default function PromoVideo() {
   const isEnded = currentScene === scenes.length - 1 && !isPlaying;
 
   return (
-    <div className="relative w-full overflow-hidden bg-white rounded-2xl shadow-2xl aspect-video select-none group">
+    <div className="relative w-full overflow-hidden bg-white rounded-2xl shadow-2xl aspect-video min-h-[320px] md:min-h-0 select-none group">
       <audio
         ref={audioRef}
         src="/songs/the_mountain-instrumental-uplifting-522470.mp3"

@@ -288,6 +288,7 @@ const Hero = () => (
         initial={{ opacity: 0, y: 36, scale: 0.97 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.8, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
+        className="w-full px-0 sm:px-0"
       >
         <PromoVideo />
       </motion.div>
