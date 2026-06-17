@@ -1072,6 +1072,8 @@ const EstimateWizard = () => {
                             client_name: form.name,
                             client_email: form.email,
                             client_phone: form.phone,
+                            name: form.name,
+                            email: form.email,
                           },
                           'YhsGCRCbDh6xdny3I'
                         );
