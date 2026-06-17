@@ -31,5 +31,5 @@ jobs:
           port: 21
           protocol: ftp
           local-dir: ./dist/
-          server-dir: /
+          server-dir: /domains/maplenestmoving.ca/public_html/
           dangerous-clean-slate: true
